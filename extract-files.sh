@@ -93,4 +93,7 @@ sed -i "41,48d" $BLOB_ROOT/vendor/etc/init/wifi_sec.rc
 "${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/vendor/lib/libwrappergps.so
 "${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/vendor/lib64/libwrappergps.so
 
+# `libc++demangle` exists but is a static library
+"${PATCHELF}" --add-needed libdemangle.so $BLOB_ROOT/vendor/bin/hw/android.hardware.neuralnetworks@1.1-service-armnn
+
 "${MY_DIR}/setup-makefiles.sh"

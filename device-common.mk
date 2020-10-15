@@ -363,7 +363,8 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libexynoscamera_shim
+    libexynoscamera_shim \
+    libdemangle.vendor
 
 # Stagefright
 PRODUCT_PACKAGES += \
