@@ -101,6 +101,7 @@ genfscon sysfs /devices/15660000.pcie0                      u:object_r:sysfs_pci
 
 # Power supply devices
 genfscon sysfs /devices/battery/power_supply                              u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/battery/power_supply/battery/store_mode           u:object_r:sysfs_battery_writable:s0
 genfscon sysfs /devices/14e30000.hsi2c/i2c-8/8-0061/power_supply          u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/13650000.hsi2c/i2c-1/1-0066/max77854-charger      u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/13650000.hsi2c/i2c-1/1-0066/max77854-fuelgauge    u:object_r:sysfs_batteryinfo:s0

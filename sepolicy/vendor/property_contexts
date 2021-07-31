@@ -40,3 +40,6 @@ wifi.active.interface            u:object_r:wifi_prop:s0
 wifi.direct.interface            u:object_r:wifi_prop:s0
 wifi.interface                   u:object_r:wifi_prop:s0
 wlan.driver.status               u:object_r:wifi_prop:s0
+
+# Battery life extender
+persist.vendor.sec.battlifeext_enabled     u:object_r:vendor_batterylifeextender_prop:s0

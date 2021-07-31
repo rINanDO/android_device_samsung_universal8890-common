@@ -12,3 +12,6 @@ vendor_internal_prop(vendor_power_prop);
 
 # Radio
 vendor_internal_prop(clatd_radio_prop)
+
+# Battery life extender
+vendor_internal_prop(vendor_batterylifeextender_prop)
