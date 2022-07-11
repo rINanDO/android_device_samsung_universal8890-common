@@ -2,8 +2,6 @@
 
 init_daemon_domain(hal_drm_widevine)
 
-hal_server_domain(hal_drm_widevine, hal_drm)
-
 vndbinder_use(hal_drm_widevine);
 
 allow hal_drm_widevine mediacodec:fd use;
