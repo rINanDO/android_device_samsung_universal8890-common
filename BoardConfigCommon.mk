@@ -23,6 +23,9 @@ SELINUX_IGNORE_NEVERALLOWS := true
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
 
+# Verified Boot
+BOARD_AVB_ENABLE := false
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
