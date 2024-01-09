@@ -222,6 +222,13 @@ PRODUCT_PACKAGES += \
     com.android.nfc_extras \
     android.hardware.nfc@1.2-service.samsung
 
+## This is a workaround for the Bluetooth sanitize shadow call stack (SCS)
+## crash reported here: https://issuetracker.google.com/issues/302408537,
+## until the new version Mali binaries released.
+## For details of the root cause and the cts vts tests comparison between
+## the preloading and non-preloading builds, please check the above issue.
+PRODUCT_PROPERTY_OVERRIDES += ro.zygote.disable_gl_preload=1
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/nfc/libnfc-sec-vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-sec-vendor.conf \
     $(COMMON_PATH)/configs/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf \
