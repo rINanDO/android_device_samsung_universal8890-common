@@ -23,7 +23,7 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     device/samsung/universal8890-common/overlay/hardware/samsung/AdvancedDisplay
 
 # APEX
-OVERRIDE_TARGET_FLATTEN_APEX := true
+OVERRIDE_PRODUCT_COMPRESSED_APEX := false
 
 # Boot animation
 TARGET_BOOTANIMATION_PRELOAD := true
@@ -375,10 +375,6 @@ PRODUCT_PACKAGES += \
 # Touch features
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.samsung
-
-# Trust HAL
-PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
 
 # USB
 PRODUCT_PACKAGES += \
