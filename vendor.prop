@@ -30,7 +30,7 @@ ro.hardware.egl=mali
 ro.opengles.version=196610
 
 # Keystore
-ro.hardware.keystore=mdfpp
+#ro.hardware.keystore=mdfpp
 
 # RIL
 ro.debug_level=0x494d
