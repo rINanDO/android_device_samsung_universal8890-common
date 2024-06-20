@@ -645,8 +645,7 @@ on fs
     # Start HW service manager early
     start hwservicemanager
 
-    setprop sys.usb.ffs.aio_compat 1
-    setprop sys.usb.mtp.device_type 2
+    # setprop sys.usb.mtp.device_type 2
 
     # Permissions for TouchScreen
     chown system radio /sys/class/sec/tsp/cmd

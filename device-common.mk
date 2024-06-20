@@ -32,11 +32,6 @@ TARGET_BOOTANIMATION_HALF_RES := true
 TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 
-# Adb
-PRODUCT_PRODUCT_PROPERTIES := \
-    persist.adb.nonblocking_ffs=0 \
-    ro.adb.nonblocking_ffs=0
-
 # AdvancedDisplay (MDNIE)
 PRODUCT_PACKAGES += \
     AdvancedDisplay
@@ -385,7 +380,7 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.basic
+    android.hardware.usb@1.3-service.basic
 
 # Vibrator
 PRODUCT_PACKAGES += \
