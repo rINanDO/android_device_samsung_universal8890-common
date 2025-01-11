@@ -310,6 +310,9 @@ on post-fs-data
     chown system system /dev/mst_ctrl
     chmod 0660 /dev/mst_ctrl
 
+# Persistent logcat
+    mkdir /data/.logs 0775 system system
+
 on boot
     # override init.rc to keep plenty of large order chunks around
     # to improve allocation times
@@ -992,3 +995,13 @@ on property:ro.debuggable=1
 on property:sys.boot_completed=1
     #Reinit lmkd to reconfigure lmkd properties
     setprop lmkd.reinit 1    
+
+service persistentLogging /system/bin/logcat -r 1024 -n 9 -f /data/.logs/log
+    class core
+    user system
+    group system
+    oneshot
+
+on property:persist.logcat.enabled=1
+    start persistentLogging
+
