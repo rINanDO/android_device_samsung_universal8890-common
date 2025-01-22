@@ -715,7 +715,7 @@ typedef struct wlan_driver_wake_reason_cnt_t {
 
 /* Wi-Fi coex channel avoidance support */
 
-#define WIFI_COEX_NO_POWER_CAP (int32_t)0x7FFFFFF
+#define WIFI_COEX_NO_POWER_CAP (int32_t)0x7FFFFFFF
 
 typedef enum {
     WIFI_AWARE = 1 << 0,
@@ -787,9 +787,12 @@ typedef struct {
     wifi_error (* wifi_get_valid_channels)(wifi_interface_handle,int, int, wifi_channel *, int *);
     wifi_error (* wifi_rtt_range_request)(wifi_request_id, wifi_interface_handle, unsigned,
             wifi_rtt_config[], wifi_rtt_event_handler);
+    wifi_error (* wifi_rtt_range_request_v3)(wifi_request_id, wifi_interface_handle, unsigned,
+            wifi_rtt_config_v3[], wifi_rtt_event_handler_v3);
     wifi_error (* wifi_rtt_range_cancel)(wifi_request_id,  wifi_interface_handle, unsigned,
             mac_addr[]);
     wifi_error (* wifi_get_rtt_capabilities)(wifi_interface_handle, wifi_rtt_capabilities *);
+    wifi_error (* wifi_get_rtt_capabilities_v3)(wifi_interface_handle, wifi_rtt_capabilities_v3 *);
     wifi_error (* wifi_rtt_get_responder_info)(wifi_interface_handle iface,
             wifi_rtt_responder *responder_info);
     wifi_error (* wifi_enable_responder)(wifi_request_id id, wifi_interface_handle iface,
@@ -1013,13 +1016,116 @@ typedef struct {
      */
     wifi_error (*wifi_set_voip_mode)(wifi_interface_handle iface, wifi_voip_mode mode);
 
+    /**
+     * Get Target Wake Time (TWT) local device capabilities for the station interface.
+     *
+     * @param iface Wifi interface handle
+     * @param capabilities TWT capabilities
+     * @return Synchronous wifi_error
+     */
+    wifi_error (*wifi_twt_get_capabilities)(wifi_interface_handle iface,
+                                            wifi_twt_capabilities* capabilities);
+
+    /**
+     * Register TWT events before sending any TWT request
+     *
+     * @param wifi_interface_handle:
+     * @param events: TWT events callbacks to register
+     * @return Synchronous wifi_error
+     */
+    wifi_error (*wifi_twt_register_events)(wifi_interface_handle iface, wifi_twt_events events);
+
+    /**
+     * Setup a TWT session.
+     *
+     * Supported only if wifi_twt_capabilities.is_twt_requester_supported is set. Results in
+     * asynchronous callback wifi_twt_events.on_twt_session_create on success or
+     * wifi_twt_events.on_twt_failure with error code.
+     *
+     * @param id Identifier for the command. The value 0 is reserved.
+     * @param iface Wifi interface handle
+     * @param request TWT request parameters
+     * @return Synchronous wifi_error
+    */
+    wifi_error (*wifi_twt_session_setup)(wifi_request_id id, wifi_interface_handle iface,
+                                 wifi_twt_request request);
+    /**
+     * Update a TWT session.
+     *
+     * Supported only if wifi_twt_session.is_updatable is set. Reesults in asynchronous callback
+     * wifi_twt_events.on_twt_session_update on success or wifi_twt_events.on_twt_failure with
+     * error code.
+     *
+     * @param id Identifier for the command. The value 0 is reserved.
+     * @param iface Wifi interface handle
+     * @param session_id TWT session identifier
+     * @param request TWT request parameters
+     * @return Synchronous wifi_error
+    */
+    wifi_error (*wifi_twt_session_update)(wifi_request_id id, wifi_interface_handle iface,
+                                  int session_id, wifi_twt_request request);
+    /**
+     * Suspend a TWT session.
+     * Supported only if wifi_twt_session.is_suspendable is set. Results in asynchronous callback
+     * wifi_twt_events.on_twt_session_suspend on success or wifi_twt_events.on_twt_failure with
+     * error code.
+     *
+     * @param id Identifier for the command. The value 0 is reserved.
+     * @param iface Wifi interface handle
+     * @param session_id TWT session identifier
+     * @return Synchronous wifi_error
+    */
+    wifi_error (*wifi_twt_session_suspend)(wifi_request_id id, wifi_interface_handle iface,
+                                   int session_id);
+    /**
+     * Resume a suspended TWT session.
+     *
+     * Supported only if wifi_twt_session.is_suspendable is set. Results in asynchronous callback
+     * wifi_twt_events.on_twt_session_resume on success or wifi_twt_events.on_twt_failure with
+     * error code.
+     *
+     * @param id Identifier for the command. The value 0 is reserved.
+     * @param iface Wifi interface handle
+     * @param session_id TWT session identifier
+     * @return Synchronous wifi_error
+    */
+    wifi_error (*wifi_twt_session_resume)(wifi_request_id id, wifi_interface_handle iface,
+                                  int session_id);
+    /**
+     * Teardown a TWT session.
+     *
+     * Results in asynchronous callback  wifi_twt_events.on_twt_session_teardown on success or
+     * wifi_twt_events.on_twt_failure with error code.
+     *
+     * @param id Identifier for the command. The value 0 is reserved.
+     * @param iface Wifi interface handle
+     * @param session_id TWT session identifier
+     * @return Synchronous wifi_error
+    */
+    wifi_error (*wifi_twt_session_teardown)(wifi_request_id id, wifi_interface_handle iface,
+                                  int session_id);
+
+    /**
+     * Get stats for a TWT session.
+     *
+     * Results in asynchronous callback  wifi_twt_events.on_twt_session_stats on success or
+     * wifi_twt_events.on_twt_failure with error code.
+     *
+     * @param id Identifier for the command. The value 0 is reserved.
+     * @param iface Wifi interface handle
+     * @param session_id TWT session identifier
+     * @return Synchronous wifi_error
+    */
+    wifi_error (*wifi_twt_session_get_stats)(wifi_request_id id, wifi_interface_handle iface,
+                                             int session_id);
+
     /**@brief twt_register_handler
      *        Request to register TWT callback before sending any TWT request
      * @param wifi_interface_handle:
      * @param TwtCallbackHandler: callback function pointers
      * @return Synchronous wifi_error
      *
-     * Note: This function is deprecated
+     * Note: This function is deprecated by wifi_twt_register_events
      */
     wifi_error (*wifi_twt_register_handler)(wifi_interface_handle iface,
                                             TwtCallbackHandler handler);
@@ -1280,7 +1386,7 @@ typedef struct {
      * @param enable true if current is scan only mode
      * @return Synchronous wifi_error
      */
-    wifi_error (*wifi_set_scan_mode)(const char * ifname, bool enable);
+    wifi_error (*wifi_set_scan_mode)(wifi_interface_handle iface, bool enable);
 
     wifi_error (*wifi_nan_pairing_end)(transaction_id id,
                                     wifi_interface_handle iface,
@@ -1293,104 +1399,6 @@ typedef struct {
      * @return Synchronous wifi_error
      */
     wifi_error (*wifi_set_mlo_mode)(wifi_handle handle, wifi_mlo_mode mode);
-
-    wifi_error (* wifi_rtt_range_request_v3)(wifi_request_id, wifi_interface_handle, unsigned,
-            wifi_rtt_config_v3[], wifi_rtt_event_handler_v3);
-    wifi_error (* wifi_get_rtt_capabilities_v3)(wifi_interface_handle, wifi_rtt_capabilities_v3 *);
-
-    /**
-     * Get Target Wake Time (TWT) local device capabilities for the station interface.
-     *
-     * @param iface Wifi interface handle
-     * @param capabilities TWT capabilities
-     * @return Synchronous wifi_error
-     */
-    wifi_error (*wifi_twt_get_capabilities)(wifi_interface_handle iface,
-                                            wifi_twt_capabilities* capabilities);
-    /**
-     * Setup a TWT session.
-     *
-     * Supported only if wifi_twt_capabilities.is_twt_requester_supported is set. Results in
-     * asynchronous callback wifi_twt_events.on_twt_session_create on success or
-     * wifi_twt_events.on_twt_failure with error code.
-     *
-     * @param id Identifier for the command. The value 0 is reserved.
-     * @param iface Wifi interface handle
-     * @param request TWT request parameters
-     * @param events TWT events
-     * @return Synchronous wifi_error
-    */
-    wifi_error (*wifi_twt_session_setup)(wifi_request_id id, wifi_interface_handle iface,
-                                 wifi_twt_request request, wifi_twt_events events);
-    /**
-     * Update a TWT session.
-     *
-     * Supported only if wifi_twt_session.is_updatable is set. Reesults in asynchronous callback
-     * wifi_twt_events.on_twt_session_update on success or wifi_twt_events.on_twt_failure with
-     * error code.
-     *
-     * @param id Identifier for the command. The value 0 is reserved.
-     * @param iface Wifi interface handle
-     * @param session_id TWT session identifier
-     * @param request TWT request parameters
-     * @return Synchronous wifi_error
-    */
-    wifi_error (*wifi_twt_session_update)(wifi_request_id id, wifi_interface_handle iface,
-                                  int session_id, wifi_twt_request request);
-    /**
-     * Suspend a TWT session.
-     * Supported only if wifi_twt_session.is_suspendable is set. Results in asynchronous callback
-     * wifi_twt_events.on_twt_session_suspend on success or wifi_twt_events.on_twt_failure with
-     * error code.
-     *
-     * @param id Identifier for the command. The value 0 is reserved.
-     * @param iface Wifi interface handle
-     * @param session_id TWT session identifier
-     * @return Synchronous wifi_error
-    */
-    wifi_error (*wifi_twt_session_suspend)(wifi_request_id id, wifi_interface_handle iface,
-                                   int session_id);
-    /**
-     * Resume a suspended TWT session.
-     *
-     * Supported only if wifi_twt_session.is_suspendable is set. Results in asynchronous callback
-     * wifi_twt_events.on_twt_session_resume on success or wifi_twt_events.on_twt_failure with
-     * error code.
-     *
-     * @param id Identifier for the command. The value 0 is reserved.
-     * @param iface Wifi interface handle
-     * @param session_id TWT session identifier
-     * @return Synchronous wifi_error
-    */
-    wifi_error (*wifi_twt_session_resume)(wifi_request_id id, wifi_interface_handle iface,
-                                  int session_id);
-    /**
-     * Teardown a TWT session.
-     *
-     * Results in asynchronous callback  wifi_twt_events.on_twt_session_teardown on success or
-     * wifi_twt_events.on_twt_failure with error code.
-     *
-     * @param id Identifier for the command. The value 0 is reserved.
-     * @param iface Wifi interface handle
-     * @param session_id TWT session identifier
-     * @return Synchronous wifi_error
-    */
-    wifi_error (*wifi_twt_session_teardown)(wifi_request_id id, wifi_interface_handle iface,
-                                  int session_id);
-
-    /**
-     * Get stats for a TWT session.
-     *
-     * Results in asynchronous callback  wifi_twt_events.on_twt_session_stats on success or
-     * wifi_twt_events.on_twt_failure with error code.
-     *
-     * @param id Identifier for the command. The value 0 is reserved.
-     * @param iface Wifi interface handle
-     * @param session_id TWT session identifier
-     * @return Synchronous wifi_error
-    */
-    wifi_error (*wifi_twt_session_get_stats)(wifi_request_id id, wifi_interface_handle iface,
-                                             int session_id);
 
     /**@brief wifi_virtual_interface_create_with_vendor_data
      * Create new virtual interface using vendor data.
