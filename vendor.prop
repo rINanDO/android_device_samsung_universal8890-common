@@ -32,6 +32,9 @@ ro.opengles.version=196610
 # Keystore
 #ro.hardware.keystore=mdfpp
 
+## Power HAL
+vendor.powerhal.disp.idle_support=false
+
 # RIL
 ro.debug_level=0x494d
 telephony.lteOnCdmaDevice=0
