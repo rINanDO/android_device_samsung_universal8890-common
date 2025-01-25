@@ -358,8 +358,7 @@ PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH) \
     hardware/samsung \
     hardware/google/interfaces \
-    hardware/google/pixel \
-    hardware/samsung/aidl/power-libperfmgr
+    hardware/google/pixel
 
 # Update
 AB_OTA_UPDATER := false
