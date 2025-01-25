@@ -362,6 +362,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/samsung/aidl/power-libperfmgr
 
 # Update
+AB_OTA_UPDATER := false
 PRODUCT_SOONG_NAMESPACES += bootable/deprecated-ota
 
 # Shims
