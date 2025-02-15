@@ -366,7 +366,8 @@ PRODUCT_SOONG_NAMESPACES += bootable/deprecated-ota
 
 # Shims
 PRODUCT_PACKAGES += \
-    libexynoscamera_shim
+    libexynoscamera_shim \
+    libdemangle
 
 # Stagefright
 PRODUCT_PACKAGES += \
