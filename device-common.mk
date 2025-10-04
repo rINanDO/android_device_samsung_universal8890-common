@@ -91,6 +91,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libsuspend
 
+# Offline Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # ConfigStore
 PRODUCT_PACKAGES += \
     disable_configstore
