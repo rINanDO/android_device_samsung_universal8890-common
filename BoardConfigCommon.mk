@@ -21,7 +21,7 @@ ALLOW_MISSING_DEPENDENCIES := true
 SELINUX_IGNORE_NEVERALLOWS := true
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+$(call soong_config_set,samsungVars,target_specific_header_path,$(COMMON_PATH)/include)
 
 # Verified Boot
 BOARD_AVB_ENABLE := false
