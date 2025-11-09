@@ -494,6 +494,9 @@ void wifi_get_error_info(wifi_error err, const char **msg); // return a pointer 
 #define WIFI_FEATURE_ROAMING_MODE_CONTROL   (uint64_t)0x800000000 // Support for configuring roaming mode
 #define WIFI_FEATURE_SET_VOIP_MODE          (uint64_t)0x1000000000 // Support Voip mode setting
 #define WIFI_FEATURE_CACHED_SCAN_RESULTS    (uint64_t)0x2000000000 // Support cached scan result report
+#define WIFI_FEATURE_MLO_SAP (uint64_t)0x4000000000                // Support MLO SoftAp
+#define WIFI_FEATURE_MULTIPLE_MLD_ON_SAP \
+    (uint64_t)0x8000000000  // Support Multiple MLD SoftAp (Bridged Dual 11be SoftAp)
 // Add more features here
 
 #define IS_MASK_SET(mask, flags)        (((flags) & (mask)) == (mask))
@@ -1034,6 +1037,15 @@ typedef struct {
     wifi_error (*wifi_twt_get_capability)(wifi_interface_handle iface,
                                           TwtCapabilitySet* twt_cap_set);
 
+    /**
+     * Register TWT events before sending any TWT request
+     *
+     * @param wifi_interface_handle:
+     * @param events: TWT events callbacks to register
+     * @return Synchronous wifi_error
+     */
+    wifi_error (*wifi_twt_register_events)(wifi_interface_handle iface, wifi_twt_events events);
+
     /**@brief twt_setup_request
      *        Request to send TWT setup frame
      * @param wifi_interface_handle:
@@ -1280,7 +1292,7 @@ typedef struct {
      * @param enable true if current is scan only mode
      * @return Synchronous wifi_error
      */
-    wifi_error (*wifi_set_scan_mode)(const char * ifname, bool enable);
+    wifi_error (*wifi_set_scan_mode)(wifi_interface_handle iface, bool enable);
 
     wifi_error (*wifi_nan_pairing_end)(transaction_id id,
                                     wifi_interface_handle iface,
@@ -1317,11 +1329,10 @@ typedef struct {
      * @param id Identifier for the command. The value 0 is reserved.
      * @param iface Wifi interface handle
      * @param request TWT request parameters
-     * @param events TWT events
      * @return Synchronous wifi_error
     */
     wifi_error (*wifi_twt_session_setup)(wifi_request_id id, wifi_interface_handle iface,
-                                 wifi_twt_request request, wifi_twt_events events);
+                                 wifi_twt_request request);
     /**
      * Update a TWT session.
      *
