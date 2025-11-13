@@ -356,6 +356,7 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH) \
+    bootable/deprecated-ota \
     hardware/samsung \
     hardware/google/interfaces \
     hardware/google/pixel \
