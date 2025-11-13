@@ -134,6 +134,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/gps/gps.conf:system/etc/gps.conf
 
+# VNDK
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-lite-v29 \
+    libhidlbase-v32
+
 # Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl:64 \
