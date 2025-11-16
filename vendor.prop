@@ -47,3 +47,6 @@ ro.soc.model=Exynos 8890
 
 # WiFi
 wifi.direct.interface=p2p-dev-wlan0
+
+# Power HAL
+vendor.powerhal.disp.idle_support=false

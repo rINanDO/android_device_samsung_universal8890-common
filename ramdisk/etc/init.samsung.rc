@@ -672,7 +672,7 @@ on boot
     chown radio system /sys/devices/virtual/data_on
 
     # Permissions for Touchscreen
-    chown system radio /sys/class/sec/tsp/cmd
+    chown system system /sys/class/sec/tsp/cmd
     chown system radio /sys/class/sec/tsp/cmd2
     chmod 0664 /sys/class/sec/tsp/cmd
     chmod 0664 /sys/class/sec/tsp/cmd2
