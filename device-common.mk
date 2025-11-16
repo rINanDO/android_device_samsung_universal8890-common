@@ -49,11 +49,11 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     audio.usb.default \
     audio.r_submix.default \
-    audio.primary.universal8890_32 \
+    audio.primary.universal8890 \
     android.hardware.audio.service.universal8890 \
-    android.hardware.audio@7.1-impl:32 \
-    android.hardware.audio.effect@7.0-impl:32 \
-    android.hardware.bluetooth.audio@2.0-impl:32 \
+    android.hardware.audio@7.1-impl \
+    android.hardware.audio.effect@7.0-impl \
+    android.hardware.bluetooth.audio@2.0-impl \
     libstagefright_softomx \
     libtinycompress \
     libstagefright_softomx_plugin
