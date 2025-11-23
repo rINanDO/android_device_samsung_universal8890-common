@@ -1,6 +1,7 @@
 cc_library_shared {
     name: "camera.exynos5",
     relative_install_path: "hw",
+    compile_multilib: "64",
 
     srcs: [
         "CameraWrapper.cpp",

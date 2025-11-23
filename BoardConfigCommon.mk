@@ -164,8 +164,7 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
 # Shims
 TARGET_LD_SHIM_LIBS += \
-    /vendor/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so \
-    /vendor/lib/libexynoscamera.so|/vendor/lib/libexynoscamera_shim.so
+    /vendor/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so
 
 # Wifi
 TARGET_USES_64_BIT_BCMDHD        := true
