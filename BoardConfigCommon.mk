@@ -162,10 +162,6 @@ BOARD_SEPOLICY_TEE_FLAVOR := mobicore
 include device/samsung_slsi/sepolicy/sepolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
-# Shims
-TARGET_LD_SHIM_LIBS += \
-    /vendor/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so
-
 # Wifi
 TARGET_USES_64_BIT_BCMDHD        := true
 BOARD_WLAN_DEVICE                := bcmdhd
