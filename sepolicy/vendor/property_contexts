@@ -25,7 +25,6 @@ vendor.powerhal.rendering  u:object_r:vendor_power_prop:s0
 # Radio
 persist.ril.interfaceconf.       u:object_r:radio_prop:s0
 persist.radio.multisim.          u:object_r:vendor_radio_prop:s0
-ro.multisim.                     u:object_r:vendor_radio_prop:s0
 ril.clatd.                       u:object_r:clatd_radio_prop:s0
 ril.phone.connected.             u:object_r:vendor_radio_prop:s0
 vendor.rild.                     u:object_r:vendor_radio_prop:s0
