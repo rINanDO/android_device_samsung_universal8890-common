@@ -46,8 +46,8 @@ TARGET_AUDIOHAL_VARIANT := samsung
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/libbt_vndcfg.txt
+PRODUCT_SOONG_NAMESPACES += hardware/broadcom/libbt
+$(call soong_config_set,brcm_libbt,custom_bt_config,//$(COMMON_PATH):vnd_exynos8890.txt)
 
 # Compatibility Matrix
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
