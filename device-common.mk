@@ -81,9 +81,12 @@ PRODUCT_PACKAGES += \
     libbt-vendor
 
 # Camera
+$(call soong_config_set,samsungCameraVars,needs_sec_reserved_field,true)
+$(call soong_config_set,samsungCameraVars,usage_64bit,true)
+
 PRODUCT_PACKAGES += \
     camera.exynos5 \
-    android.hardware.camera.provider@2.5-service_64
+    android.hardware.camera.provider-service.samsung
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/sysconfig/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml
