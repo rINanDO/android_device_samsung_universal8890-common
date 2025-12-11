@@ -999,12 +999,7 @@ on property:sys.boot_completed=1
     #Reinit lmkd to reconfigure lmkd properties
     setprop lmkd.reinit 1    
 
-service persistentLogging /system/bin/logcat -f /data/.logs/log
+service persistentLogging /system/bin/logcat -f /data/.logs/log -r 1024 -n 10
     class core
     user system
     group system
-#    disabled
-
-on property:persist.logcat.enabled=1
-    start persistentLogging
-
