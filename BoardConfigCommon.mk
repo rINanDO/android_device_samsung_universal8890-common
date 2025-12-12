@@ -86,7 +86,7 @@ AB_OTA_UPDATER := false
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(COMMON_PATH)/framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    hardware/lineage/interfaces/compatibility_matrices/compatibility_matrix.lineage.xml 
 
 # Kernel
 TARGET_KERNEL_ARCH := arm64
