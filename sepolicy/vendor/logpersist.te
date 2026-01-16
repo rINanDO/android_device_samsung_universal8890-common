@@ -1,0 +1,2 @@
+allow logpersist logpersist_data_file:dir { add_name remove_name write search };
+allow logpersist logpersist_data_file:file { append create getattr open rename unlink };

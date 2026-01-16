@@ -28,6 +28,9 @@
 /data/nfc(/.*)?                   u:object_r:nfc_data_file:s0
 /data/vendor/nfc(/.*)?            u:object_r:nfc_vendor_data_file:s0
 
+# Logpersist
+/data/.logs(/.*)?            u:object_r:logpersist_data_file:s0
+
 ##########################
 # Devices
 #

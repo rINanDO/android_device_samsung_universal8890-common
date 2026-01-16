@@ -6,6 +6,7 @@ type cas_data_file, file_type, data_file_type, core_data_file_type;
 type fingerprintd_vendor_data_file, data_file_type, file_type;
 type firmware_data_file, file_type, data_file_type, core_data_file_type;
 type gps_data_file, file_type, data_file_type, core_data_file_type;
+type logpersist_data_file, file_type, data_file_type, core_data_file_type;
 type nfc_vendor_data_file, data_file_type, file_type;
 
 # debug types
