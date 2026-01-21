@@ -17,8 +17,7 @@
 #include <utils/String8.h>
 #include <hardware/hardware.h>
 #include <hardware/camera.h>
-#include <camera/Camera.h>
-#include <camera/CameraParameters.h>
+#include <utils/Mutex.h>
 
 static android::Mutex gCameraWrapperLock;
 
