@@ -86,6 +86,7 @@ $(call soong_config_set,samsungCameraVars,usage_64bit,true)
 
 PRODUCT_PACKAGES += \
     camera.exynos5 \
+    libpower.vendor \
     android.hardware.camera.provider-service.samsung
 
 PRODUCT_COPY_FILES += \
@@ -103,7 +104,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl:32 \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.3 \
+    android.hardware.drm@1.1.vendor \
+    android.hardware.drm@1.3.vendor \
     android.hardware.drm@1.0-impl \
     android.hardware.drm-service.clearkey
 
@@ -141,7 +143,9 @@ PRODUCT_PACKAGES += \
 # GNNS
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
-    android.hardware.gnss@1.0-service
+    android.hardware.gnss@1.0-service \
+    android.hardware.gnss@1.1.vendor \
+    android.frameworks.sensorservice@1.0.vendor
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/gps/gps.conf:system/etc/gps.conf
@@ -149,7 +153,10 @@ PRODUCT_COPY_FILES += \
 # VNDK
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-lite-v29 \
-    libhidlbase-v32
+    libprotobuf-cpp-lite-vendorcompat \
+    libhidlbase-v32.vendor \
+    android.hidl.allocator@1.0.vendor
+
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -178,10 +185,10 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    android.hidl.manager@1.0 \
-    libhidltransport \
-    libhwbinder
+    android.hidl.base@1.0.vendor \
+    android.hidl.manager@1.0.vendor \
+    libhidltransport.vendor \
+    libhwbinder.vendor
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -217,9 +224,9 @@ PRODUCT_PACKAGES += \
 
 # Neural Networks
 PRODUCT_PACKAGES += \
-    android.hardware.neuralnetworks@1.0 \
-    android.hardware.neuralnetworks@1.1 \
-    libtextclassifier_hash
+    android.hardware.neuralnetworks@1.0.vendor \
+    android.hardware.neuralnetworks@1.1.vendor \
+    libtextclassifier_hash.vendor
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -337,19 +344,19 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.2 \
-    android.hardware.radio@1.3 \
-    android.hardware.radio@1.4 \
-    android.hardware.radio.config@1.0 \
-    android.hardware.radio.config@1.1 \
-    android.hardware.radio.config@1.2 \
-    android.hardware.radio.deprecated@1.0 \
+    android.hardware.radio@1.2.vendor \
+    android.hardware.radio@1.3.vendor \
+    android.hardware.radio@1.4.vendor \
+    android.hardware.radio.config@1.0.vendor \
+    android.hardware.radio.config@1.1.vendor \
+    android.hardware.radio.config@1.2.vendor \
+    android.hardware.radio.deprecated@1.0.vendor \
     android.hardware.radio@1.4-service.legacy \
     init.baseband.rc \
-    libxml2 \
-    libnetutils \
-    libsqlite \
-    secril_config_svc
+    libxml2.vendor \
+    libnetutils.vendor \
+    libsqlite.vendor \
+    secril_config_svc.vendor
 
 # Copy stock APN config as lineage one seams to be quite broken and outdated
 PRODUCT_COPY_FILES += \
@@ -376,6 +383,7 @@ PRODUCT_SOONG_NAMESPACES += \
 # Shims
 PRODUCT_PACKAGES += \
     libexynoscamera_shim \
+    libgui_shim \
     libdemangle.vendor
 
 # Stagefright
