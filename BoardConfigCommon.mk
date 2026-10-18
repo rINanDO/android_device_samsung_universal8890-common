@@ -66,6 +66,12 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 # Display
 TARGET_SCREEN_DENSITY := 560
 
+# Graphics
+$(call soong_config_set_bool,libui,legacy_gralloc,true)
+
+# ION
+$(call soong_config_set_bool,libion,legacy_impl,true)
+
 # Filesystem
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE  := ext4
 BOARD_HAS_LARGE_FILESYSTEM := true
