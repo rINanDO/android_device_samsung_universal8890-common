@@ -4,3 +4,6 @@ dontaudit gpsd system_data_file:dir search;
 
 allow gpsd servicemanager:binder { call transfer };
 allow gpsd hal_system_suspend_service:service_manager find;
+
+# /system/etc/gps.conf
+allow gpsd system_file:file r_file_perms;

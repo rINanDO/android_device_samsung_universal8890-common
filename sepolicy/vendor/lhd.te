@@ -20,3 +20,4 @@ allow lhd hal_system_suspend_service:service_manager find;
 dontaudit lhd system_data_file:dir search;
 
 allow lhd servicemanager:binder { call transfer };
+unix_socket_connect(lhd, fwmarkd, netd)

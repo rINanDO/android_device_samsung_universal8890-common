@@ -1,3 +1,7 @@
 # nfc.te
 
 allow nfc sec_efs_file:dir search;
+
+# /data/vendor/nfc
+allow nfc nfc_vendor_data_file:dir rw_dir_perms;
+allow nfc nfc_vendor_data_file:file create_file_perms;
