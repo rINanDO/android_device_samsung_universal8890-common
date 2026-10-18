@@ -18,3 +18,5 @@ allow lhd {
 allow lhd sysfs_sec_gps:lnk_file r_file_perms;
 allow lhd hal_system_suspend_service:service_manager find;
 dontaudit lhd system_data_file:dir search;
+
+allow lhd servicemanager:binder { call transfer };

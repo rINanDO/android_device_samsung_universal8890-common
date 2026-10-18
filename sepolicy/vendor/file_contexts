@@ -9,6 +9,17 @@
 /system/bin/move_widevine_data\.sh            u:object_r:move-widevine-data-sh_exec:s0
 /(system/)?(vendor/)?app/mcRegistry(/.*)?     u:object_r:mobicore_vendor_file:s0
 
+# odm SELinux files (vendor lives in /system/vendor, AOSP only labels /odm and /vendor/odm)
+/system/vendor/odm/etc/selinux/odm_sepolicy\.cil                 u:object_r:sepolicy_file:s0
+/system/vendor/odm/etc/selinux/odm_file_contexts                 u:object_r:file_contexts_file:s0
+/system/vendor/odm/etc/selinux/odm_seapp_contexts                u:object_r:seapp_contexts_file:s0
+/system/vendor/odm/etc/selinux/odm_property_contexts             u:object_r:property_contexts_file:s0
+/system/vendor/odm/etc/selinux/odm_service_contexts              u:object_r:vendor_service_contexts_file:s0
+/system/vendor/odm/etc/selinux/odm_hwservice_contexts            u:object_r:hwservice_contexts_file:s0
+/system/vendor/odm/etc/selinux/odm_keystore2_key_contexts        u:object_r:keystore2_key_contexts_file:s0
+/system/vendor/odm/etc/selinux/odm_mac_permissions\.xml          u:object_r:mac_perms_file:s0
+/system/vendor/odm/etc/selinux/odm_tee_service_contexts          u:object_r:tee_service_contexts_file:s0
+
 ####################################
 # Data Files
 
@@ -39,7 +50,7 @@
 /dev/block/sda1              u:object_r:bota_block_device:s0
 /dev/block/sda2              u:object_r:bota_block_device:s0
 /dev/block/sda4              u:object_r:param_block_device:s0
-/dev/block/sda7              u:object_r:ota_block_device:s0
+/dev/block/sda7              u:object_r:misc_block_device:s0
 /dev/block/sda9              u:object_r:tombstones_block_device:s0
 /dev/block/sda10             u:object_r:dnt_block_device:s0
 /dev/block/sda12             u:object_r:steady_block_device:s0

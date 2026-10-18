@@ -1,0 +1,7 @@
+# shell.te
+
+# Debugging: adb shell dmesg and listing /sys/fs/pstore
+userdebug_or_eng(`
+  allow shell kernel:system syslog_read;
+  allow shell pstorefs:dir r_dir_perms;
+')
