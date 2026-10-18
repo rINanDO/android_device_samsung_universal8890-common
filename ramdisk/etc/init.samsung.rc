@@ -368,6 +368,8 @@ on boot
     chmod 0664 /sys/class/power_supply/battery/fg_full_voltage
     chown system radio /sys/class/power_supply/battery/batt_reset_soc
     chown system radio /sys/class/power_supply/battery/batt_slate_mode
+    chown system system /sys/class/power_supply/battery/charge_start_level
+    chown system system /sys/class/power_supply/battery/charge_stop_level
     chown system radio /sys/class/power_supply/battery/factory_mode
     chown system radio /sys/class/power_supply/battery/siop_level
     chown system radio /sys/class/power_supply/battery/siop_event

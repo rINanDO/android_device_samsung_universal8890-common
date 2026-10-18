@@ -113,10 +113,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_HOST_PACKAGES += \
     dtbhtoolExynos
 
-# FastCharge
+# Health (charging control, fast charge)
+$(call soong_config_set_bool,lineage_health,charging_control_supports_toggle,false)
+$(call soong_config_set_bool,lineage_health,charging_control_supports_limit,true)
+$(call soong_config_set,lineage_health,charging_control_limit_start_path,/sys/devices/battery/power_supply/battery/charge_start_level)
+$(call soong_config_set,lineage_health,charging_control_limit_stop_path,/sys/devices/battery/power_supply/battery/charge_stop_level)
 $(call soong_config_set,lineage_health,fast_charge_node,/sys/class/sec/switch/afc_disable)
 $(call soong_config_set,lineage_health,fast_charge_value_none,1)
 $(call soong_config_set,lineage_health,fast_charge_value_fast_charge,0)
+
+PRODUCT_PACKAGES += \
+    vendor.lineage.health-service.default
 
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay-service.samsung-exynos

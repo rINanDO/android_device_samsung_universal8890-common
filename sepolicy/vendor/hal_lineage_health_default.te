@@ -1,0 +1,4 @@
+# hal_lineage_health_default.te
+
+# /sys/devices/battery/power_supply/battery/charge_{start,stop}_level
+allow hal_lineage_health_default sysfs_batteryinfo:dir search;
