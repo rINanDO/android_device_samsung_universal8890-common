@@ -325,6 +325,7 @@ PRODUCT_COPY_FILES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.samsungexynos8890 \
+    fstab.samsungexynos8890_ramdisk \
     init.recovery.samsungexynos8890.rc \
     init.vendor.rilcommon.rc \
     init.samsung.rc \
