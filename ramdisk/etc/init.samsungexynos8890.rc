@@ -11,6 +11,15 @@ on early-init
     write /sys/block/zram0/comp_algorithm lz4
 
 on init
+    # This kernel's USB gadget predates the configfs-based gadget framework
+    # entirely - init.samsungexynos8890.usb.rc drives it exclusively through
+    # the legacy /sys/class/android_usb/android0/... sysfs class. AOSP's own
+    # generic init.usb.rc gates every one of ITS android_usb rules behind
+    # "property:sys.usb.configfs=0", and used to default that property to 0
+    # itself; that default-setter was removed upstream (the expectation now
+    # is that the device sets it), so without this, sys.usb.configfs stays
+    # permanently unset and USB never activates on this device.
+    setprop sys.usb.configfs 0
     start watchdogd
 
     # See storage config details at http://source.android.com/tech/storage/
@@ -1006,3 +1015,4 @@ service persistentLogging /system/bin/logcat -f /data/.logs/log -r 1024 -n 10
     class core
     user system
     group system
+
