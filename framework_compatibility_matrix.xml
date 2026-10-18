@@ -1,4 +1,28 @@
 <compatibility-matrix version="2.0" type="framework">
+    <!--
+        Legacy HIDL HALs this device still serves (manifest.xml) that the
+        stock AOSP framework compatibility matrices (FCM 7+) no longer list,
+        having moved on to AIDL equivalents of the same HAL. check-vintf
+        treats an unmatched device-manifest instance as a hard build error
+        ("not specified in framework compatibility matrix"), so they must be
+        declared here as optional additions to the framework matrix.
+    -->
+    <hal format="hidl" optional="true">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>2.0</version>
+        <interface>
+            <name>IBluetoothAudioProvidersFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>android.hardware.health</name>
+        <version>2.1</version>
+        <interface>
+            <name>IHealth</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.samsung.hardware.gnss</name>
         <transport>hwbinder</transport>
