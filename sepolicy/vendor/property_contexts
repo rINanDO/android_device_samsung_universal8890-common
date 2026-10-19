@@ -6,6 +6,9 @@ persist.adb.nonblocking_ffs      u:object_r:exported_default_prop:s0 exact int
 persist.vendor.audio.            u:object_r:vendor_audio_prop:s0
 ro.vendor.audio_hal.             u:object_r:vendor_audio_prop:s0
 
+# Bluetooth
+vendor.bluetooth_fw_ver          u:object_r:vendor_bluetooth_prop:s0 exact string
+
 # HWC
 ro.vendor.winupdate              u:object_r:vendor_hwc_prop:s0
 vendor.ddk.                      u:object_r:vendor_hwc_prop:s0
