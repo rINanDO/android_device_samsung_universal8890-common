@@ -1,0 +1,4 @@
+# macloader.te
+
+# fchown()/fchmod() of /data/vendor/conn/.cid.info, interface ioctls
+allow macloader self:capability { chown fowner net_raw };

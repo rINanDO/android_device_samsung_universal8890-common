@@ -1,0 +1,9 @@
+# tee.te
+
+# /data/misc/mcRegistry, the legacy mcDriverDaemon registry
+typeattribute tee data_between_core_and_vendor_violators;
+allow tee mobicore_data_file:dir create_dir_perms;
+allow tee mobicore_data_file:file create_file_perms;
+
+# mcDriverDaemon probes the legacy /data/app/mcRegistry
+dontaudit tee apk_data_file:dir search;

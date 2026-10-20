@@ -9,6 +9,9 @@
 /system/bin/move_widevine_data\.sh            u:object_r:move-widevine-data-sh_exec:s0
 /(system/)?(vendor/)?app/mcRegistry(/.*)?     u:object_r:mobicore_vendor_file:s0
 
+# files in /data
+/data/misc/mcRegistry(/.*)?                    u:object_r:mobicore_data_file:s0
+
 # odm SELinux files (vendor lives in /system/vendor, AOSP only labels /odm and /vendor/odm)
 /system/vendor/odm/etc/selinux/odm_sepolicy\.cil                 u:object_r:sepolicy_file:s0
 /system/vendor/odm/etc/selinux/odm_file_contexts                 u:object_r:file_contexts_file:s0
